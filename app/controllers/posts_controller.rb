@@ -19,12 +19,15 @@ class PostsController < ApplicationController
 
   # GET /posts/1/edit
   def edit
+    unless @post = current_user.posts.find_by(id: params[:id])
+      redirect_to root_path, notice: 'You do not have permission'
+    end
   end
 
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
 
     respond_to do |format|
       if @post.save
@@ -54,10 +57,14 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
-    respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
-      format.json { head :no_content }
+    if @post = current_user.posts.find_by(id: params[:id])
+      @post.destroy
+      respond_to do |format|
+        format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to root_path, notice: 'You do not have permission'
     end
   end
 
