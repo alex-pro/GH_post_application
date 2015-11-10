@@ -17,6 +17,6 @@
 
 .btn-group
   = link_to 'Back to posts', posts_path, class: "btn btn-default"
-  - if @post.user.id == current_user.id
+  - if @post.user == current_user
     = link_to 'Edit post', edit_post_path(@post), class: "btn btn-info"
     = link_to 'Delete post', post_path(@post), method: 'delete', class: 'btn btn-danger'
