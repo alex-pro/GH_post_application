@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20151104172530) do
+=======
+ActiveRecord::Schema.define(version: 20151103193937) do
+>>>>>>> 363e3a2392f1578bf8f7405f890bcf20245cc332
 
   create_table "posts", force: :cascade do |t|
     t.string   "title",      limit: 255
@@ -20,6 +24,19 @@ ActiveRecord::Schema.define(version: 20151104172530) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "user_id",    limit: 4
+<<<<<<< HEAD
+=======
+  end
+
+  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",            limit: 255
+    t.string   "email",           limit: 255
+    t.string   "password_digest", limit: 255
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+>>>>>>> 363e3a2392f1578bf8f7405f890bcf20245cc332
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
