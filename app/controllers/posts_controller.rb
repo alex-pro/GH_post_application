@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = if params[:query].present?
+      Post.where('body LIKE ? OR title LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
+    else
+      Post.all
+    end
   end
 
   # GET /posts/1
