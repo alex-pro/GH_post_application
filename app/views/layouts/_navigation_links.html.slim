@@ -1,5 +1,5 @@
 - if current_user
-  li = form_tag posts_path, class: "navbar-form navbar-left", remote: true, role: "search", method: 'get' do
+  li = form_tag('posts', class: "navbar-form navbar-left", method: 'get') do
     .row.input-group
       = text_field_tag :query, params[:query], placeholder: 'Search here...', class: 'form-control'
       span.input-group-btn
