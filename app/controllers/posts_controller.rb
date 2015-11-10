@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_filter :set_post, only: [:update]
+  before_filter :set_post, only: :update
+
   def index
     @posts = if params[:query].present?
                Post.where('body LIKE ? OR title LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
