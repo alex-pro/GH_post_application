@@ -1,0 +1,10 @@
+- if current_user
+  li = form_tag posts_path, class: "navbar-form navbar-left", remote: true, role: "search", method: 'get' do
+    .row.input-group
+      = text_field_tag :query, params[:query], placeholder: 'Search here...', class: 'form-control'
+      span.input-group-btn
+        = submit_tag "Find!", class: "btn btn-default"
+  li = link_to 'Log out', session_path(current_user), method: 'delete'
+- else
+  li = link_to 'Sign in', new_user_path
+  li = link_to 'Log in', new_session_path

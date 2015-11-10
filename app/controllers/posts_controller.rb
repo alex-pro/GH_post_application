@@ -1,35 +1,25 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
-
-  # GET /posts
-  # GET /posts.json
+  before_filter :set_post, only: [:update]
   def index
     @posts = if params[:query].present?
-      Post.where('body LIKE ? OR title LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
-    else
-      Post.all
-    end
+               Post.where('body LIKE ? OR title LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
+             else
+               Post.all
+             end
   end
 
-  # GET /posts/1
-  # GET /posts/1.json
   def show
+    @post = Post.find(params[:id])
   end
 
-  # GET /posts/new
   def new
     @post = Post.new
   end
 
-  # GET /posts/1/edit
   def edit
-    unless @post = current_user.posts.find_by(id: params[:id])
-      redirect_to root_path, notice: 'You do not have permission'
-    end
+    @post = current_user.posts.find_by(id: params[:id])
   end
 
-  # POST /posts
-  # POST /posts.json
   def create
     @post = current_user.posts.new(post_params)
 
@@ -44,8 +34,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /posts/1
-  # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
       if @post.update(post_params)
@@ -58,8 +46,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # DELETE /posts/1
-  # DELETE /posts/1.json
   def destroy
     if @post = current_user.posts.find_by(id: params[:id])
       @post.destroy
@@ -73,13 +59,12 @@ class PostsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def post_params
-      params.require(:post).permit(:title, :body, :tags)
-    end
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def post_params
+    params.require(:post).permit(:title, :body, :tags)
+  end
 end

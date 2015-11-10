@@ -1,0 +1,22 @@
+.panel.panel-default
+  table.table
+    tr
+      th Title
+      th Body
+      th Created_by
+      th Tags
+    tr
+      td
+        = @post.title
+      td
+        = @post.body
+      td
+        = @post.user.email
+      td
+        = @post.tags
+
+.btn-group
+  = link_to 'Back to posts', posts_path, class: "btn btn-default"
+  - if @post.user.id == current_user.id
+    = link_to 'Edit post', edit_post_path(@post), class: "btn btn-info"
+    = link_to 'Delete post', post_path(@post), method: 'delete', class: 'btn btn-danger'
