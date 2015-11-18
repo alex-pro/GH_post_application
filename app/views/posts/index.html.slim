@@ -6,14 +6,19 @@ h3
     .thumbnail
       .caption
         h3
+          = image_tag post.user.gravatar_url, size: '40'
+          '
+          = post.user.name
+        h3
           = post.title
         h5
           = post.body
         h6
           = post.tags
         h5
-          'Created by:
-          = post.user.name
+          strong
+            '#{time_ago_in_words(post.created_at)} ago
+
         = link_to 'Show', post_path(post), class: "btn btn-info"
         - if post.user == current_user
           = link_to 'Edit', edit_post_path(post), class: "btn btn-default"

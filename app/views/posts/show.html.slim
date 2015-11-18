@@ -1,28 +1,27 @@
-.panel.panel-default
-  table.table
-    tr
-      th Title
-      th Body
-      th Created_by
-      th Tags
-    tr
-      td
+.row
+  .thumbnail
+    .caption
+      h3
+        = image_tag @post.user.gravatar_url, size: '40'
+        '
+        = @post.user.name
+      h3
         = @post.title
-      td
+      h5
         = @post.body
-      td
-        = @post.user.email
-      td
+      h6
         = @post.tags
+      h5
+        strong
+          '#{time_ago_in_words(@post.created_at)} ago
+
+      .btn-group
+        = link_to 'Back to posts', posts_path, class: "btn btn-default"
+        - if @post.user == current_user
+          = link_to 'Edit post', edit_post_path(@post), class: "btn btn-info"
+          = link_to 'Delete post', post_path(@post), method: 'delete', class: 'btn btn-danger'
 
 h2 Comments
 #comments
   = render @post.comments
   = render 'comments/form'
-
-br
-.btn-group
-  = link_to 'Back to posts', posts_path, class: "btn btn-default"
-  - if @post.user == current_user
-    = link_to 'Edit post', edit_post_path(@post), class: "btn btn-info"
-    = link_to 'Delete post', post_path(@post), method: 'delete', class: 'btn btn-danger'
