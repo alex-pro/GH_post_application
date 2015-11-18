@@ -1,11 +1,10 @@
 h1.text-center Posts
 h3
   = link_to 'New post', new_post_path, class: "btn btn-primary"
-
 - @posts.each do |post|
   .row
     .thumbnail
-      .caption.
+      .caption
         h3
           = post.title
         h5

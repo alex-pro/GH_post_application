@@ -1,0 +1,3 @@
+= simple_form_for([@post, @post.comments.build], html: { class: 'form-horizontal' }) do |f|
+  = f.input :body
+  = f.button :submit, 'Create comment', class: 'btn btn-primary'

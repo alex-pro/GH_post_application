@@ -5,7 +5,7 @@ class PostsController < ApplicationController
     @posts = if params[:query].present?
                Post.where('body LIKE ? OR title LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
              else
-               Post.all
+               Post.order('posts.created_at DESC').all
              end
   end
 

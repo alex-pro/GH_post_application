@@ -23,4 +23,5 @@ class User < ActiveRecord::Base
   validates_presence_of :name
 
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
 end
