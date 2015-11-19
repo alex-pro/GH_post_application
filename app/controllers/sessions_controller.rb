@@ -6,10 +6,11 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:sessions][:email].downcase)
     if user && user.authenticate(params[:sessions][:password])
       session[:user_id] = user.id
-      flash[:notice] = "Ви увійшли як #{current_user.email}"
+      session[:banner] = 0
+      flash[:notice] = "You loged in as #{current_user.email}"
       redirect_to root_path
     else
-      flash.now[:danger] = 'Неправильно введено електронну пошту або пароль'
+      flash.now[:danger] = 'Incorrect password or email'
       render 'new'
     end
   end

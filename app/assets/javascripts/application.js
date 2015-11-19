@@ -11,8 +11,18 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.turbolinks
 //= require jquery_ujs
-//= require twitter/bootstrap
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require bootstrap
+//= require sweet-alert
+//= require turbolinks
 //= require_tree .
+
+$(document).ready(function() {
+  var count = $('.banner').data('count');
+  if(count % 10 == 0) {
+    sweetAlert("Do you like our site?", "You can clone it from GitHub \nalex-pro/GH_post_application!");
+  }
+});

@@ -18,5 +18,11 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find_by(id: session[:user_id])
   end
 
-  helper_method :current_user
+  def banner
+    if session[:banner]
+      session[:banner] += 1
+    end
+  end
+
+  helper_method [:current_user, :banner]
 end
