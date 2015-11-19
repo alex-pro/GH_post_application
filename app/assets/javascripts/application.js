@@ -23,6 +23,6 @@
 $(document).ready(function() {
   var count = $('.banner').data('count');
   if(count % 10 == 0 && count >= 10) {
-    sweetAlert("Do you like our site?", "You can clone it from GitHub \nalex-pro/GH_post_application!");
+    alert("Do you like our site?", "You can clone it from GitHub \nalex-pro/GH_post_application!");
   }
 });
