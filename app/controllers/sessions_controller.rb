@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:sessions][:email].downcase)
     if user && user.authenticate(params[:sessions][:password])
       session[:user_id] = user.id
-      session[:banner] = 0
+      session[:banner] = 1
       flash[:notice] = "You loged in as #{current_user.email}"
       redirect_to root_path
     else
