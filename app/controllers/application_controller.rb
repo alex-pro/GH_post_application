@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
 
   def banner
-    if session[:banner]
+    if current_user
       session[:banner] += 1
     end
   end
