@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  resources :hearts
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create]
   resources :posts do
     resources :comments, only: :create
   end
+
+  match 'like', to: 'hearts#like', via: :post
+  match 'unlike', to: 'hearts#unlike', via: :delete
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
