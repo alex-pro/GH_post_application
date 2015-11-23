@@ -25,6 +25,6 @@ h3
 
         h4
           = div_for post, "data-post-id": "#{post.id}" do
-            = "Like "
+            = "Like  "
             = render partial: "hearts/button", locals: { post: post }
             = " #{post.hearts.count}"
