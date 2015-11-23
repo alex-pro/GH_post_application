@@ -20,11 +20,9 @@
 //= require turbolinks
 //= require_tree .
 
-alert(1);
 $(document).ready(function() {
   var count = $('.banner').data('count');
-  if(count && count % 10 == 0 && count >= 10) {
-    $('.sweet-alert').css('display', 'none');
+  if(count % 10 == 0 && count >= 10) {
     sweetAlert("Do you like our site?", "You can clone it from GitHub \nalex-pro/GH_post_application!");
   }
 });
