@@ -21,6 +21,7 @@
 //= require_tree .
 
 $(document).ready(function() {
+  $('.sweet-alert').css('display', 'none');
   var count = $('.banner').data('count');
   if(count && count % 10 == 0 && count >= 10) {
     sweetAlert("Do you like our site?", "You can clone it from GitHub \nalex-pro/GH_post_application!");
