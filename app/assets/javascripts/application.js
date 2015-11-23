@@ -22,11 +22,7 @@
 
 $(document).ready(function() {
   var count = $('.banner').data('count');
-<<<<<<< HEAD
   if(count % 10 == 0 && count >= 10) {
-=======
-  if(count && count % 10 == 0 && count >= 10) {
->>>>>>> 2cdca6521e2c30294ee0610d4572f5279bde0a4c
     sweetAlert("Do you like our site?", "You can clone it from GitHub \nalex-pro/GH_post_application!");
   }
 });
