@@ -10,7 +10,7 @@
       h5
         = @post.body
       h6
-        = @post.tags
+        = @post.tag_list
       h5
         strong
           '#{time_ago_in_words(@post.created_at)} ago

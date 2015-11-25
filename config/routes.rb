@@ -8,6 +8,8 @@ Rails.application.routes.draw do
 
   match 'like', to: 'hearts#like', via: :post
   match 'unlike', to: 'hearts#unlike', via: :delete
+
+  get 'tags/:tag', to: 'posts#index', as: :tag
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

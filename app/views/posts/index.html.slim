@@ -14,7 +14,7 @@ h3
         h5
           = post.body
         h6
-          = post.tags
+          = raw post.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')
         h5
           strong
             '#{time_ago_in_words(post.created_at)} ago
@@ -28,4 +28,3 @@ h3
             = "Like  "
             = render partial: "hearts/button", locals: { post: post }
             = " #{post.hearts.count}"
-
