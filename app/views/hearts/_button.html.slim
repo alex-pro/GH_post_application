@@ -1,4 +1,4 @@
-- if current_user
+- if current_user && post.user != current_user
   - if current_user.heart?(post)
     = link_to unlike_path(post_id: post.id), remote: true, method: :delete
       span.glyphicon.glyphicon-heart-empty

@@ -4,7 +4,9 @@ class HeartsController < ApplicationController
   def like
     @user = current_user
     @post = Post.find(params[:post_id])
-    @user.heart!(@post)
+    if @post.user != current_user
+      @user.heart!(@post)
+    end
   end
 
   def unlike

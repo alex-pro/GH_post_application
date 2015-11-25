@@ -6,7 +6,7 @@ h3
     .thumbnail
       .caption
         h3
-          = image_tag post.user.gravatar_url, size: '40'
+          = image_tag post.user.gravatar_url(:rating => 'R', :secure => true), size: '40'
           '
           = post.user.name
         h3
