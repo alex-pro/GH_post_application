@@ -2,10 +2,12 @@ class PostsController < ApplicationController
   before_filter :set_post, only: :update
 
   def index
-    @posts = if params[:query].present?
+    @posts = if params[:q]
                Post.where('body LIKE ? OR title LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
-             elsif params[:tag].present?
+             elsif params[:tag]
                Post.tagged_with(params[:tag])
+             elsif params[:query]
+               Post.select { |p| p.hearts.count > 0 }
              else
                Post.order('posts.created_at DESC').all
              end

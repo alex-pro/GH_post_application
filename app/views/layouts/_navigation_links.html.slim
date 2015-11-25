@@ -1,7 +1,8 @@
+li = link_to 'Popular', controller: "posts", query: "popular"
 - if current_user
   li = form_tag('posts', class: "navbar-form navbar-left", method: 'get') do
     .row.input-group
-      = text_field_tag :query, params[:query], placeholder: 'Search here...', class: 'form-control'
+      = text_field_tag :query, params[:q], placeholder: 'Search here...', class: 'form-control'
       span.input-group-btn
         = submit_tag "Find!", class: "btn btn-default"
   li
