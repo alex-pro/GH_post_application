@@ -1,0 +1,12 @@
+.row
+  .col-md-6.col-md-offset-3
+    = simple_form_for @profile do |f|
+      = f.input :country, collection: Profile::COUNTRIES
+      = f.input :birthday, as: :date, start_year: Date.today.year - 90,
+                                      end_year: Date.today.year - 12,
+                                      order: [:day, :month, :year]
+      = f.input :sex, collection: Profile::SEX
+      = f.input :about
+      = f.input :avatar
+      = f.button :submit, class: "btn btn-primary"
+      = link_to "Back to users", profiles_path, class: "btn btn-default"

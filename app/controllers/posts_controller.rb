@@ -3,11 +3,13 @@ class PostsController < ApplicationController
 
   def index
     @posts = if params[:q]
-               Post.where('body LIKE ? OR title LIKE ?', "%#{params[:query]}%", "%#{params[:query]}%")
+               Post.where('body LIKE ? OR title LIKE ?', "%#{params[:q]}%", "%#{params[:q]}%")
              elsif params[:tag]
                Post.tagged_with(params[:tag])
-             elsif params[:query]
+             elsif params[:query] == 'popular'
                Post.select { |p| p.hearts.count > 0 }
+             elsif params[:query] == 'active'
+               Post.select { |p| Time.now - p.updated_at < 84400 }
              else
                Post.order('posts.created_at DESC').all
              end
@@ -70,6 +72,6 @@ class PostsController < ApplicationController
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, :tag_list)
+    params.require(:post).permit(:title, :body, :tag_list, :image)
   end
 end

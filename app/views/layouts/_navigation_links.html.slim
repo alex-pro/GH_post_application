@@ -1,13 +1,15 @@
 li = link_to 'Popular', controller: "posts", query: "popular"
+li = link_to 'Active', controller: "posts", query: "active"
+
 - if current_user
-  li = form_tag('posts', class: "navbar-form navbar-left", method: 'get') do
+  li = form_tag('/posts', class: "navbar-form navbar-left", method: 'get') do
     .row.input-group
-      = text_field_tag :query, params[:q], placeholder: 'Search here...', class: 'form-control'
+      = text_field_tag :q, params[:q], placeholder: 'Search here...', class: 'form-control'
       span.input-group-btn
         = submit_tag "Find!", class: "btn btn-default"
   li
-    = link_to
-      = image_tag current_user.gravatar_url, size: '20'
+    = link_to profile_path(current_user.profile), class: "navbar-avatar-container"
+      = image_tag(current_user.profile.avatar, class: "navbar-avatar img-circle img-responsive")
   li = link_to 'Log out', session_path(current_user), method: 'delete'
 - else
   li = link_to 'Sign in', new_user_path

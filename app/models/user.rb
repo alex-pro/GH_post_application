@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
-  include Gravtastic
-  gravtastic
+  after_create :default_profile
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   has_secure_password
 
@@ -15,6 +14,7 @@ class User < ActiveRecord::Base
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :hearts, dependent: :destroy
+  has_one :profile
 
   def heart!(post)
     self.hearts.create!(post_id: post.id)
@@ -27,5 +27,11 @@ class User < ActiveRecord::Base
 
   def heart?(post)
     self.hearts.find_by_post_id(post.id)
+  end
+
+  private
+
+  def default_profile
+    self.create_profile
   end
 end

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :hearts
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create]
+  resources :profiles
   resources :posts do
     resources :comments, only: :create
   end
@@ -11,6 +12,8 @@ Rails.application.routes.draw do
 
   get 'tags/:tag', to: 'posts#index', as: :tag
   get 'popular', to: 'posts#index'
+  get 'active', to: 'posts#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

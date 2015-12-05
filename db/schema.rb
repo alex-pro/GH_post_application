@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125090038) do
+ActiveRecord::Schema.define(version: 20151205164829) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "body",       limit: 65535
@@ -41,9 +41,23 @@ ActiveRecord::Schema.define(version: 20151125090038) do
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
     t.integer  "user_id",    limit: 4
+    t.text     "image",      limit: 65535
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
+
+  create_table "profiles", force: :cascade do |t|
+    t.string   "country",    limit: 255
+    t.date     "birthday"
+    t.string   "sex",        limit: 255
+    t.text     "about",      limit: 65535
+    t.text     "avatar",     limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "user_id",    limit: 4
+  end
+
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id",        limit: 4
@@ -69,8 +83,9 @@ ActiveRecord::Schema.define(version: 20151125090038) do
     t.string   "name",            limit: 255
     t.string   "email",           limit: 255
     t.string   "password_digest", limit: 255
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.text     "avatar",          limit: 65535
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

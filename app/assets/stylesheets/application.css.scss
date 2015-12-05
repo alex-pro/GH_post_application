@@ -6,3 +6,28 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+.index-image {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.show-image {
+  max-width: 400px;
+  max-height: 400px;
+  width: 100%;
+  object-fit: cover;
+}
+
+.navbar-avatar-container {
+  padding: 5px !important;
+  height: 50px;
+  width: 50px;
+}
+
+.navbar-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

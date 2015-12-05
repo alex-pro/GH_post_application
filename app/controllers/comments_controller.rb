@@ -3,7 +3,8 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = @post.comments.new(comment_params)
     @comment.user = current_user
-    if @comment.save
+    @post.updated_at = Time.now
+    if @comment.save && @post.save
       redirect_to :back, notice: 'Comment has created'
     else
       redirect_to :back, alert: 'Comment hasn\'t created'

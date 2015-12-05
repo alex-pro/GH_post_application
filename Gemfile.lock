@@ -68,7 +68,9 @@ GEM
     execjs (2.6.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    gravtastic (3.2.6)
+    gravatar-ultimate (2.0.0)
+      activesupport (>= 2.3.14)
+      rack
     i18n (0.7.0)
     jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
@@ -212,7 +214,7 @@ DEPENDENCIES
   bootstrap-sass (~> 3.2.0)
   byebug
   coffee-rails (~> 4.1.0)
-  gravtastic
+  gravatar-ultimate (~> 2.0)
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
